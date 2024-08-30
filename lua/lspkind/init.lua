@@ -194,6 +194,9 @@ function lspkind.cmp_format(opts)
     vim_item.kind = lspkind.symbolic(vim_item.kind, opts)
 
     if opts.menu ~= nil then
+      if opts.menu[entry.source.name] == '[LSP]' then
+        opts.menu[entry.source.name] = '['..entry.source.source.client.name..']'
+      end
       vim_item.menu = (opts.menu[entry.source.name] ~= nil and opts.menu[entry.source.name] or "")
         .. ((opts.show_labelDetails and vim_item.menu ~= nil) and vim_item.menu or "")
     end
